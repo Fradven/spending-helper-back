@@ -5,4 +5,51 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
+    <changeSet id="0.01" author="fva">
+        <createTable tableName="spending">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="label" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="int">
+                <constraints
+                        nullable="false"
+                        foreignKeyName="fk_category"
+                        references="categories(id)"
+                />
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="true"/>
+            </column>
+            <column name="document_path" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="date_created" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex tableName="spending" indexName="NDX_ID">
+            <column name="id"/>
+        </createIndex>
+        <createIndex tableName="spending" indexName="NDX_CATEGORY">
+            <column name="category_id"/>
+        </createIndex>
+
+        <createTable tableName="categories">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="label" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex tableName="categories" indexName="NDX_ID">
+            <column name="id"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>
