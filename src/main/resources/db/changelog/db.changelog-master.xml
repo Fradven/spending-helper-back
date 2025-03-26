@@ -52,4 +52,12 @@
             <column name="id"/>
         </createIndex>
     </changeSet>
+
+    <changeSet id="0.02" author="fva">
+        <addColumn tableName="spending">
+            <column name="date_spending" type="DATE" afterColumn="description">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
