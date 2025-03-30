@@ -11,14 +11,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf.disable())  // Disable CSRF for testing
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/hello").permitAll() // Allow public access to /api/hello
-                        .anyRequest().authenticated() // Secure everything else
-                )
-                .csrf(csrf -> csrf.disable()) // Disable CSRF for testing
-                .formLogin(login -> login.disable()) // Disable login redirect
-                .httpBasic(httpBasic -> httpBasic.disable()); // Disable basic auth
-
+                        .requestMatchers("/api/**").permitAll()
+                        .anyRequest().authenticated()
+                );
         return http.build();
     }
 }
