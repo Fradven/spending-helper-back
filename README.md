@@ -5,8 +5,7 @@ This is the back-end of the application built with Spring Boot.
 ## 📦 Installation
 1. **Clone the repository**  
    ```sh
-   git clone https://github.com/your-repo/backend.git
-   cd backend
+   git clone git@github.com:Fradven/spending-helper-back.git
    ```
 
 2. **Ensure you have Java & Maven installed**  
